@@ -1,9 +1,12 @@
 <script>
-	import { slide } from "svelte/transition";
-  import { elasticInOut } from "svelte/easing";
-
-  let todos = [];
-  let input = "";
+  import { slide } from 'svelte/transition'
+  import { elasticInOut } from 'svelte/easing'
+  interface ITODO {
+    id: string
+    text: string
+  }
+  let todos: ITODO[] = []
+  let input = ''
 
   function addTodo() {
     if (input)
@@ -11,18 +14,16 @@
         ...todos,
         {
           text: input,
-          id: Math.random()
-            .toString(36)
-            .substr(2, 9)
-        }
-      ];
-    input = "";
+          id: Math.random().toString(36).substr(2, 9),
+        },
+      ]
+    input = ''
   }
 
-  function removeTodo(id) {
-    const index = todos.findIndex(todo => todo.id === id);
-    todos.splice(index, 1);
-    todos = todos;
+  function removeTodo(id: string) {
+    const index = todos.findIndex(todo => todo.id === id)
+    todos.splice(index, 1)
+    todos = todos
   }
 </script>
 
@@ -30,33 +31,41 @@
   <div class="columns is-centered is-vcentered is-mobile">
     <div class="column is-narrow" style="width: 70%">
       <h1 class="has-text-centered title">Svelte TODO</h1>
-      <form class="field has-addons" style="justify-content: center" on:submit|preventDefault={addTodo}>
+      <form
+        class="field has-addons"
+        style="justify-content: center"
+        on:submit|preventDefault={addTodo}
+      >
         <div class="control">
-          <input bind:value={input} class="input" type="text" placeholder="TODO">
+          <input bind:value={input} class="input" type="text" placeholder="TODO" />
         </div>
         <div class="control">
           <button class="button is-primary">
-            <span class="icon is-small">
-              <i class="fas fa-plus"></i>
-            </span>
+            <span class="icon is-small"> <i class="fas fa-plus" /> </span>
           </button>
         </div>
       </form>
       <ul class:list={todos.length > 0}>
         {#each todos as todo (todo.id)}
-          <li class="list-item" transition:slide="{{duration: 300, easing: elasticInOut}}">
+          <li class="list-item" transition:slide={{ duration: 300, easing: elasticInOut }}>
             <div class="is-flex" style="align-items: center">
               <span class="is-pulled-left">{todo.text}</span>
-              <div style="flex: 1"></div>
-              <button class="button is-text is-pulled-right is-small" on:click={()=> removeTodo(todo.id)}>
-                <span class="icon">
-                  <i class="fas fa-check"></i>
-                </span>
+              <div style="flex: 1" />
+              <button
+                class="button is-text is-pulled-right is-small"
+                on:click={() => removeTodo(todo.id)}
+              >
+                <span class="icon"> <i class="fas fa-check" /> </span>
               </button>
             </div>
           </li>
         {:else}
-          <li class="has-text-centered" transition:slide="{{delay: 600, duration: 300, easing: elasticInOut}}">Nothing here!</li>
+          <li
+            class="has-text-centered"
+            transition:slide={{ delay: 600, duration: 300, easing: elasticInOut }}
+          >
+            Nothing here!
+          </li>
         {/each}
       </ul>
     </div>

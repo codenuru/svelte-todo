@@ -1,0 +1,10 @@
+.circleci/
+.git/
+.vscode/
+.env
+.gitignore
+node_modules
+__sapper__/
+yarn.lock
+package-lock.json
+static

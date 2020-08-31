@@ -37,8 +37,8 @@
 			}
 		],
 		"no-unused-vars": [
-			"error", 
-			{ 
+			"error",
+			{
 				"argsIgnorePattern": "^_",
 				"varsIgnorePattern": "^_"
 			}
@@ -56,13 +56,21 @@
 			"parser": "@typescript-eslint/parser",
 			"extends": [
 				"plugin:import/typescript",
-				"plugin:@typescript-eslint/recommended"
+				"plugin:@typescript-eslint/recommended",
+				"plugin:prettier/recommended"
 			],
 			"plugins": [
-				"@typescript-eslint"
+				"@typescript-eslint",
+				"prettier"
 			],
 			"rules": {
-				"@typescript-eslint/ban-ts-comment": "off"
+				"@typescript-eslint/ban-ts-comment": "off",
+				"prettier/prettier": [
+					"error",
+					{
+						"endOfLine": "auto"
+					}
+				]
 			}
 		},
 		{
