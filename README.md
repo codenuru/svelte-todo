@@ -1,5 +1,10 @@
 # Svelte-Todo - Svelte Todo App
 
+[![Netlify Status](https://api.netlify.com/api/v1/badges/b0c8ea6a-b6d2-46c8-9c14-7a401c937096/deploy-status)](https://app.netlify.com/sites/sveltesapper-todo/deploys)
+
+## Demo
+[Demo](https://sveltesapper-todo.netlify.app/)
+
 Todo Application with Sapper (GraphQL API)
 This project was created to explore new frontend libraries.
 
