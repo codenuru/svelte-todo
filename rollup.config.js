@@ -1,26 +1,22 @@
-import resolve from "@rollup/plugin-node-resolve";
-import replace from "@rollup/plugin-replace";
-import commonjs from "@rollup/plugin-commonjs";
-import json from "@rollup/plugin-json";
-import typescript from "@rollup/plugin-typescript";
-import svelte from "rollup-plugin-svelte";
 import babel from "@rollup/plugin-babel";
-import { terser } from "rollup-plugin-terser";
+import commonjs from "@rollup/plugin-commonjs";
 import config from "sapper/config/rollup";
-import sveltePreprocess from "svelte-preprocess";
+import json from "@rollup/plugin-json";
 import pkg from "./package.json";
+import replace from "@rollup/plugin-replace";
+import resolve from "@rollup/plugin-node-resolve";
+import svelte from "rollup-plugin-svelte";
+import { terser } from "rollup-plugin-terser";
+import typescript from "@rollup/plugin-typescript";
 
-const { defaults } = require("./svelte.config.js");
-
-const preprocess = [
-	sveltePreprocess({ defaults }),
-	// You could have more preprocessors, like MDsveX
-];
+const { createPreprocessors } = require("./svelte.config.js");
 
 const mode = process.env.NODE_ENV;
 const dev = mode === "development";
 const sourcemap = dev ? "inline" : false;
 const legacy = !!process.env.SAPPER_LEGACY_BUILD;
+
+const preprocess = createPreprocessors({ sourceMap: !!sourcemap });
 
 const warningIsIgnored = (warning) => warning.message.includes(
 	"Use of eval is strongly discouraged, as it poses security risks and may cause issues with minification",
@@ -39,8 +35,10 @@ export default {
 				"process.env.NODE_ENV": JSON.stringify(mode),
 			}),
 			svelte({
-				dev,
-				hydratable: true,
+				compilerOptions: {
+					dev,
+					hydratable: true,
+				},
 				emitCss: true,
 				preprocess,
 			}),
@@ -93,8 +91,10 @@ export default {
 				"module.require": "require",
 			}),
 			svelte({
-				generate: "ssr",
-				dev,
+				compilerOptions: {
+					dev,
+					generate: "ssr",
+				},
 				preprocess,
 			}),
 			resolve({

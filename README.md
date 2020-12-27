@@ -3,6 +3,7 @@
 [![Netlify Status](https://api.netlify.com/api/v1/badges/b0c8ea6a-b6d2-46c8-9c14-7a401c937096/deploy-status)](https://app.netlify.com/sites/sveltesapper-todo/deploys)
 
 ## Demo
+
 [Demo](https://sveltesapper-todo.netlify.app/)
 
 Todo Application with Sapper (GraphQL API)
@@ -13,8 +14,6 @@ Note: This project is working in progress.
 ## ❓ What is this
 
 This is an extension to the [official Sapper Rollup template](https://github.com/sveltejs/sapper-template-rollup) with TypeScript preprocessing and a GraphQL server through TypeGraphQL (Apollo Server).
-
-If you're looking for something with much, much more bundled in, check out [my opinionated project base](https://github.com/babichjacob/sapper-firebase-typescript-graphql-tailwindcss-actions-template).
 
 - [Sapper for Svelte](https://sapper.svelte.dev/)
   - [Official VS Code Plugin](https://marketplace.visualstudio.com/items?itemName=svelte.svelte-vscode)
